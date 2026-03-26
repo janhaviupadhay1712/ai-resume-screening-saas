@@ -1,6 +1,22 @@
 import streamlit as st
 import requests
+import json
 
+# Load stored scores
+def load_scores():
+    try:
+        with open("data.json", "r") as f:
+            return json.load(f)
+    except:
+        return []
+
+# Save scores
+def save_scores(new_scores):
+    data = load_scores()
+    data.extend(new_scores)
+
+    with open("data.json", "w") as f:
+        json.dump(data, f)
 
 if "scores" not in st.session_state:
     st.session_state.scores = []
@@ -79,12 +95,21 @@ if menu == "Dashboard":
     </p>
     """, unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns(3)
+    scores = load_scores()
 
-    col1.metric("Resumes Processed", "2")
-    col2.metric("Avg Match Score", "49%")
-    col3.metric("Top Candidate Score", "47%")
+    if not scores:
+        st.warning("No data yet. Upload resumes to see dashboard stats.")
+    else:
 
+        total = len(scores)
+        avg = round(sum(scores) / total, 2)
+        top = max(scores)
+
+        col1, col2, col3 = st.columns(3)
+
+        col1.metric("Resumes Processed", total)
+        col2.metric("Avg Match Score", f"{avg}%")
+        col3.metric("Top Candidate Score", f"{top}%")
 # ---------------------------
 # MATCH RESUME
 # ---------------------------
@@ -149,10 +174,13 @@ elif menu == "Rank Candidates":
                 result = response.json()
 
                 # ✅ STORE SCORES
-                st.session_state.scores = [
-                    round(item["score"], 2) for item in result["ranked_candidates"]
-                ]
-                st.write("Stored Scores:", st.session_state.scores)
+                scores = [round(item["score"], 2) for item in result["ranked_candidates"]]
+
+                # Save permanently
+                save_scores(scores)
+
+                # Also keep session for current run
+                st.session_state.scores = scores
 
                 cols = st.columns(3)
 
@@ -185,7 +213,7 @@ elif menu == "Analytics":
 
     st.markdown("## 📈 Analytics Dashboard")
 
-    scores = st.session_state.scores
+    scores = load_scores()
 
     if not scores:
         st.warning("No data yet. Upload resumes first.")
