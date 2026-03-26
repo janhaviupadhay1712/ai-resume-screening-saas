@@ -67,12 +67,11 @@ Open API docs:
 http://127.0.0.1:8000/docs
 ```
 
-## Future Improvements
+## 🚀 New Feature  Updated
 
-* Resume embeddings using Sentence Transformers
-* Vector database (FAISS)
-* Recruiter dashboard
-* AI-powered resume recommendations
+* Integrated FAISS vector database
+* Enabled fast semantic search across multiple resumes
+* Scalable architecture for large datasets
 
 ---
 
