@@ -270,26 +270,6 @@ POST /rank-resumes/
 
 ---
 
-# 👨‍💻 Author
-
-## Janhavi Upadhyay
-
-B.Tech CSE (Artificial Intelligence)
-
-GitHub:
-
-```text
-https://github.com/yourusername
-```
-
-LinkedIn:
-
-```text
-https://linkedin.com/in/yourprofile
-```
-
----
-
 # ⭐ If You Like This Project
 
 Give this repository a star ⭐ on GitHub.
