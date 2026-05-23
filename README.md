@@ -248,20 +248,6 @@ POST /rank-resumes/
 
 ---
 
-# 📸 Screenshots
-
-Add screenshots here:
-
-```text
-screenshots/dashboard.png
-screenshots/ranking.png
-screenshots/analytics.png
-```
-
-
-
----
-
 # 💡 Future Improvements
 
 * Multi-user authentication
@@ -281,16 +267,6 @@ screenshots/analytics.png
 * Resume Screening
 * Campus Placement Systems
 * Hiring Platforms
-
----
-
-# 🏆 Resume Highlights
-
-* Built a production-style AI recruitment platform
-* Implemented NLP-based semantic resume matching
-* Designed scalable FastAPI backend APIs
-* Developed modern Streamlit dashboard UI
-* Integrated candidate ranking and analytics system
 
 ---
 
